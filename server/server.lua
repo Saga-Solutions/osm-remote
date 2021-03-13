@@ -172,7 +172,7 @@ if (body.auth == pass) then
 local playerId = body.id
 local reason = body.reason
 
-if (playerid ~= nil) then -- Check Config Var
+if (playerId ~= nil) then -- Check Config Var
     DropPlayer(playerId, "You have been Kicked from the server:\n"..reason.."\nJoin our Discord for further information")
     Res:Send(GetPlayerIdentifiers(playerId)[1])
 else

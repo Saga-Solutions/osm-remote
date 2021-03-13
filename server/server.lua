@@ -42,7 +42,7 @@ end)
 Server.use("/addmoney", r2)
 Server.listen()
 
--- JOB SETUP 
+-- SETJOB SETUP 
 
 local r3 = Router.new()
 r3:Post("/", function(Req, Res)
@@ -53,15 +53,25 @@ if (body.auth == pass) then
 
 local pid = body.id
 local pjob = body.job
-
+local pgrade = body.grade
 
 local Player = QBCore.Functions.GetPlayer(pid)
+
+if (Config.JobGrades == true) then -- Grades System Condition 
+    if Player ~= nil then
+        Player.Functions.SetJob(tostring(pjob), tonumber(pgrade))
+        Res:Send("Success")
+	else
+		Res:Send("Fail")
+	end
+else 
 	if Player ~= nil then
 		Player.Functions.SetJob(tostring(pjob))
         Res:Send("Success")
 	else
 		Res:Send("Fail")
 	end
+end
 end
 
 end)

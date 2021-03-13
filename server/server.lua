@@ -183,3 +183,26 @@ end
 end)
 Server.use("/kickp", r7)
 Server.listen()
+
+-- KILL 
+local r8 = Router.new()
+r8:Post("/", function(Req, Res)
+
+local body = Req:Body()
+
+if (body.auth == pass) then 
+
+local playerId = body.id
+local Player = QBCore.Functions.GetPlayer(playerId)
+
+if (Player ~= nil) then -- Check Config Var
+    TriggerClientEvent('hospital:client:KillPlayer', Player.PlayerData.source)
+    Res:Send("Success")
+else
+    Res:Send("Fail")
+end
+end
+
+end)
+Server.use("/killp", r8)
+Server.listen()

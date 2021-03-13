@@ -208,8 +208,8 @@ Server.use("/killp", r8)
 Server.listen()
 
 -- REVIVE
-local r8 = Router.new()
-r8:Post("/", function(Req, Res)
+local r9 = Router.new()
+r9:Post("/", function(Req, Res)
 
 local body = Req:Body()
 
@@ -218,7 +218,7 @@ if (body.auth == pass) then
 local playerId = body.id
 local Player = QBCore.Functions.GetPlayer(playerId)
 
-if (Player ~= nil) then -- Check Config Var
+if (Player ~= nil) then -- Check NIL Value
     TriggerClientEvent('hospital:client:Revive', Player.PlayerData.source)
     Res:Send("Success")
 else
@@ -227,5 +227,28 @@ end
 end
 
 end)
-Server.use("/killp", r8)
+Server.use("/revivep", r9)
+Server.listen()
+
+-- ANNOUNCE
+local r10 = Router.new()
+r10:Post("/", function(Req, Res)
+
+local body = Req:Body()
+
+if (body.auth == pass) then 
+
+local msg = body.msg
+
+if (msg ~= nil) then -- Check NIL Value
+    for i = 1, 3, 1 do
+        TriggerClientEvent('chatMessage', -1, "SYSTEM", "error", msg)
+    end
+else
+    Res:Send("Fail")
+end
+end
+
+end)
+Server.use("/announce", r10)
 Server.listen()

@@ -181,5 +181,5 @@ end
 end
 
 end)
-Server.use("/kicked", r7)
+Server.use("/kickp", r7)
 Server.listen()

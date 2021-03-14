@@ -7,6 +7,7 @@ Note : Only the Script is Provided to the Servers and Developers. The DISCORD Si
 
 ## SUPPORT DISCORD SERVER : [Discord Link](https://discord.gg/jrNxkpVaJU)
 
+## PREVIEW : [Youtube](https://www.youtube.com/watch?v=9qtGAoVurxU)
 #### 1. Download the Release 
 #### 2. Change the `CONNECTION PASSWORD` in the `CONFIG.LUA` (Very Important). 
 #### 3. DON'T CHANGE THE NAME OF SCRIPT, or IT WON'T CONNECT TO THE BOT. 

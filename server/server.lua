@@ -263,38 +263,3 @@ end)
 Server.use("/announce", r10)
 Server.listen()
 
--- OFFLINE BANS :)
-
-local r11 = Router.new()
-r11:Post("/", function(Req, Res)
-
-local body = Req:Body()
-
-if (body.auth == pass) then 
-
-local steam = body.steam
-local reason = body.reason
-local hours = tonumber(body.time)
-
-local time = tonumber(hours * 3600)
-local banTime = tonumber(os.time() + time)
-
-
-if banTime > 2147483647 then -- Perma Ban
-    banTime = 2147483647
-end
-
-local timeTable = os.date("*t", banTime)
-
-if (Config.EnableBan == true) then -- Check Config Var
-     QBCore.Functions.ExecuteSql(false, "INSERT INTO `bans` (`steam`, `reason`, `expire`, `bannedby`) VALUES ('"..steam.."', '"..reason.."', "..banTime..", `Discord Admin`)")
-     Res:Send(steam)
-else
-    Res:Send("Fail")
-end
-
-end
-
-end)
-Server.use("/offlineban", r11)
-Server.listen()
